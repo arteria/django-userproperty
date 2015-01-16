@@ -24,7 +24,7 @@ And finaly sync your db
 
 
 
-After creating an account on your website, the user need to do some tasks before the can go to his profile. In this example adding more information to his profile.
+After creating an account on your website, the user needs to do some tasks before he can enter his profile. In this example adding more information and agreeing to the terms and conditions.
 
 When creating the new user you create a new property:
 
@@ -39,19 +39,18 @@ In your login view you can now have different outcomes based on the UserProperty
 
     #in your login view
     
-    setupProperty = getIntegerProperty('setup')
+    setupProperty = getIntegerProperty(request,'setup')
     
-    if setupProperty:
-        if setupProperty is 1:
-            #redirect, a form for adding phone number etc
-        elif setupProperty is 2:
-            #redirect, acceppting the terms and conditions
-        else:
-            removeProperty(request, tag='setup')
+    if setupProperty is 1:
+        #redirect, a form for adding phone number etc
+    elif setupProperty is 2:
+        #redirect, acceppting the terms and conditions
+    elif setupProperty:
+        removeProperty(request, tag='setup')
     
     # stuff when no property was set
     
-The only thing left to do is setting the property to a new value when the respective actions(form in this case) are done:
+The only thing left to do is setting the property to a new value when the respective actions(forms in this case) are done:
 
     from django_userproperty.utils import setIntegerProperty, removeProperty
 

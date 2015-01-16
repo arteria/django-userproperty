@@ -24,8 +24,8 @@ class GlobalProperty(models.Model):
     ''' 
     '''
     class Meta:
-        verbose_name='Global Property'
-        verbose_name_plural='Global Properties'
+        verbose_name = 'Global Property'
+        verbose_name_plural = 'Global Properties'
 
     tag = models.CharField('tag', max_length=64, unique=True)
     switch = models.IntegerField()

@@ -14,11 +14,15 @@ Add the app in you settings.py:
         'django-userproperty',
     )
 
+And finaly sync your db
+
+    python manage.py syncdb
+
 ## Usage
 
 ### Example: 
 
-Other examples: setup tour, saving user specific properties(number of data entries displayed in js datatables), etc.
+
 
 After creating an account on your website, the user need to do some tasks before the can go to his profile. In this example adding more information to his profile.
 
@@ -67,3 +71,5 @@ The only thing left to do is setting the property to a new value when the respec
         removeProperty(request, tag='setup')
         
         #redirect login
+
+Other examples: setup tour, saving user specific properties(number of data entries displayed in js datatables), etc.

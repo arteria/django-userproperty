@@ -1,4 +1,4 @@
-from ar_userproperty.models import UserProperty, GlobalProperty
+from .models import UserProperty, GlobalProperty
 
 
 ### UserProperty ###

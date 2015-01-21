@@ -14,7 +14,7 @@ Add the app in you settings.py:
         'django-userproperty',
     )
 
-And finaly sync your db
+And finally sync your db
 
     python manage.py syncdb
 
@@ -44,7 +44,7 @@ In your login view you can now have different outcomes based on the UserProperty
     if setupProperty is 1:
         #redirect, a form for adding phone number etc
     elif setupProperty is 2:
-        #redirect, acceppting the terms and conditions
+        #redirect, accepting the terms and conditions
     elif setupProperty:
         removeProperty(request, tag='setup')
     

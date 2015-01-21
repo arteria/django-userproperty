@@ -227,3 +227,27 @@ def decGlobalProperty(tag="", decrementBy=1):
         return True
     except:
         return False
+
+
+# PEP8 #
+
+### UserProperty ###
+
+set_integer_property = setIntegerProperty
+get_integer_property = getIntegerProperty
+add_property = addProperty
+remove_property = removeProperty
+get_all_properties = getAllProperties
+drop_all_properties_for_user = dropAllPropertiesForUser
+get_property = getProperty
+get_users_with_property = getUsersWithProperty
+inc_user_property = incUserProperty
+dec_user_property = decUserProperty
+
+### Global Property ###
+
+set_global_property = setGlobalProperty
+get_global_property = getGlobalProperty
+get_integer_global_property = getIntegerGlobalProperty
+inc_global_property = incGlobalProperty
+dec_global_property = decGlobalProperty

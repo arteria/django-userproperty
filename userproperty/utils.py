@@ -238,10 +238,10 @@ get_integer_property = getIntegerProperty
 add_property = addProperty
 remove_property = removeProperty
 get_all_properties = getAllProperties
-drop_all_properties = dropAllPropertiesForUser
+drop_all_properties_for_user = dropAllPropertiesForUser
 get_property = getProperty
 get_users_with_property = getUsersWithProperty
-int_user_property = incUserProperty
+inc_user_property = incUserProperty
 dec_user_property = decUserProperty
 
 ### Global Property ###
@@ -249,5 +249,5 @@ dec_user_property = decUserProperty
 set_global_property = setGlobalProperty
 get_global_property = getGlobalProperty
 get_integer_global_property = getIntegerGlobalProperty
-int_global_property = incGlobalProperty
+inc_global_property = incGlobalProperty
 dec_global_property = decGlobalProperty

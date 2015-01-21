@@ -1,6 +1,9 @@
-#Django-UserProperty
+# [django-userproperty](https://github.com/arteria/django-userproperty)
 
-Dajngo-UserProperty gives you the possibility to save values to a in relation to a user. There are endless possibilities for use cases.
+[django-userproperty](https://github.com/arteria/django-userproperty) is a pluggable/reusable Django app that manages per user and global properties. In addition, 
+[django-userproperty](https://github.com/arteria/django-userproperty) provides helper functions to set, get, incerement and decrement these properties.
+
+ 
 
 ## Installation
 

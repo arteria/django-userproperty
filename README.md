@@ -44,9 +44,9 @@ In your login view you can now have different outcomes based on the UserProperty
     
     setupProperty = getIntegerProperty(request,'setup')
     
-    if setupProperty is 1:
+    if setupProperty == 1:
         #redirect, a form for adding phone number etc
-    elif setupProperty is 2:
+    elif setupProperty == 2:
         #redirect, accepting the terms and conditions
     elif setupProperty:
         removeProperty(request, tag='setup')

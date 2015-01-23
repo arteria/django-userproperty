@@ -4,14 +4,14 @@
 import os
 import sys
 
-import django_userproperty
+import userproperty
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-version = django_userproperty.__version__
+version = userproperty.__version__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -24,12 +24,12 @@ readme = open('README.md').read()
 #history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
-    name='Django-UserProperty',
+    name='django-userproperty',
     version=version,
-    packages=['django_userproperty', ],
+    packages=['userproperty', ],
     license='BSD',
-    description='django Userproperty',
-    ong_description=readme,  # + '\n\n' + history,
+    description='django userproperty',
+    long_description=readme,  # + '\n\n' + history,
     install_requires=open('requirements.txt').read().split('\n'),
     author='arteria GmbH',
     author_email='admin@arteria.ch',

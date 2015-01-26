@@ -1,9 +1,10 @@
-from .models import UserProperty, GlobalProperty
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from userproperty.models import UserProperty, GlobalProperty
 
 
-### UserProperty ###
-
-def setIntegerProperty(request, tag="", value=0, anUser=None):
+def setIntegerProperty(request, name="", value=0, anUser=None):
     """
     """
     try:
@@ -13,10 +14,10 @@ def setIntegerProperty(request, tag="", value=0, anUser=None):
             theUser = anUser
 
         try:
-            un = UserProperty.objects.get(user=theUser, tag=tag)
-            un.switch = value
+            un = UserProperty.objects.get(user=theUser, name=name)
+            un.value = value
         except UserProperty.DoesNotExist:
-            un = UserProperty(user=theUser, tag=tag, switch=value)
+            un = UserProperty(user=theUser, name=name, value=value)
         un.save()
         return True
     except:
@@ -24,7 +25,7 @@ def setIntegerProperty(request, tag="", value=0, anUser=None):
     return False
 
 
-def getIntegerProperty(request, tag="", value=0, anUser=None):
+def getIntegerProperty(request, name="", value=0, anUser=None):
     """
     """
     if anUser is None:
@@ -33,15 +34,15 @@ def getIntegerProperty(request, tag="", value=0, anUser=None):
         theUser = anUser
 
     try:
-        un = UserProperty.objects.get(user=theUser, tag=tag)
-        value = un.switch
+        un = UserProperty.objects.get(user=theUser, name=name)
+        value = un.value
         return value
     except UserProperty.DoesNotExist:
         return value
     return None
 
 
-def addProperty(request, tag="", anUser=None):
+def addProperty(request, name="", anUser=None):
     """Add a notification for a user.
     """
     try:
@@ -50,17 +51,17 @@ def addProperty(request, tag="", anUser=None):
         else:
             theUser = anUser
         try:
-            un = UserProperty.objects.get(user=theUser, tag=tag)
-            un.switch = 1
+            un = UserProperty.objects.get(user=theUser, name=name)
+            un.value = 1
         except UserProperty.DoesNotExist:
-            un = UserProperty(user=theUser, tag=tag, switch=1)
+            un = UserProperty(user=theUser, name=name, value=1)
         un.save()
         return True
     except:
         return False
 
 
-def removeProperty(request, tag="", anUser=None):
+def removeProperty(request, name="", anUser=None):
     """
     Remove a notification for a user.
     """
@@ -69,7 +70,7 @@ def removeProperty(request, tag="", anUser=None):
     else:
         theUser = anUser
     try:
-        un = UserProperty.objects.get(user=theUser, tag=tag)
+        un = UserProperty.objects.get(user=theUser, name=name)
         un.delete()
     except UserProperty.DoesNotExist:
         pass
@@ -92,30 +93,30 @@ def dropAllPropertiesForUser(anUser=None):
     UserProperty.objects.filter(user=anUser).delete()
 
 
-def getProperty(request, tag="", anUser=None):
+def getProperty(request, name="", anUser=None):
     """Returns True if the user has this property set.
     """
     try:
         if anUser is None:
-            un = UserProperty.objects.get(user=request.user, tag=tag)
+            un = UserProperty.objects.get(user=request.user, name=name)
         else:
-            un = UserProperty.objects.get(user=anUser, tag=tag)
-        return bool(un.switch)
+            un = UserProperty.objects.get(user=anUser, name=name)
+        return bool(un.value)
     except UserProperty.DoesNotExist:
         pass
     return False
 
 
-def getUsersWithProperty(tag=""):
+def getUsersWithProperty(name=""):
     """Returns a list of Users having a Property
     """
     ans = []
-    for u in UserProperty.objects.filter(tag=tag):
+    for u in UserProperty.objects.filter(name=name):
         ans.append(u.user)
     return ans
 
 
-def incUserProperty(request, tag="", anUser=None, incrementBy=1):
+def incUserProperty(request, name="", anUser=None, incrementBy=1):
     """
     """
     try:
@@ -124,17 +125,17 @@ def incUserProperty(request, tag="", anUser=None, incrementBy=1):
         else:
             theUser = anUser
         try:
-            un = UserProperty.objects.get(user=theUser, tag=tag)
+            un = UserProperty.objects.get(user=theUser, name=name)
         except UserProperty.DoesNotExist:
-            un = UserProperty(user=theUser, tag=tag, switch=0)
-        un.switch += incrementBy
+            un = UserProperty(user=theUser, name=name, value=0)
+        un.value += incrementBy
         un.save()
         return True
     except:
         return True
 
 
-def decUserProperty(request, tag="", anUser=None, decrementBy=1):
+def decUserProperty(request, name="", anUser=None, decrementBy=1):
     """
     """
     try:
@@ -143,13 +144,13 @@ def decUserProperty(request, tag="", anUser=None, decrementBy=1):
         else:
             theUser = anUser
         try:
-            un = UserProperty.objects.get(user=theUser, tag=tag)
+            un = UserProperty.objects.get(user=theUser, name=name)
         except UserProperty.DoesNotExist:
-            un = UserProperty(user=theUser, tag=tag, switch=0)
-        if un.switch < 1:
+            un = UserProperty(user=theUser, name=name, value=0)
+        if un.value < 1:
             pass
         else:
-            un.switch -= decrementBy
+            un.value -= decrementBy
             un.save()
         return True
     except:
@@ -158,71 +159,71 @@ def decUserProperty(request, tag="", anUser=None, decrementBy=1):
 
 ### Global Property ###
 
-def setGlobalProperty(tag="", value=0):
+def setGlobalProperty(name="", value=0):
     """
     """
     try:
         try:
-            un = GlobalProperty.objects.get(tag=tag)
-            un.switch = value
+            un = GlobalProperty.objects.get(name=name)
+            un.value = value
         except GlobalProperty.DoesNotExist:
-            un = GlobalProperty(tag=tag, switch=value)
+            un = GlobalProperty(name=name, value=value)
         un.save()
         return True
     except:
         return False
 
 
-def getGlobalProperty(tag="", value=0):
+def getGlobalProperty(name="", value=0):
     """Returns True if this Property is set.
     """
     try:
-        prop = GlobalProperty.objects.get(tag=tag)
-        return bool(prop.switch)
+        prop = GlobalProperty.objects.get(name=name)
+        return bool(prop.value)
     except GlobalProperty.DoesNotExist:
         pass
     return False
 
 
-def getIntegerGlobalProperty(tag=""):
+def getIntegerGlobalProperty(name=""):
     """Returns Integer Value if this Property is set, else 0
     """
     try:
-        prop = GlobalProperty.objects.get(tag=tag)
-        return prop.switch
+        prop = GlobalProperty.objects.get(name=name)
+        return prop.value
     except GlobalProperty.DoesNotExist:
         pass
     return 0
 
 
-def incGlobalProperty(tag="", incrementBy=1):
-    """Increments switch Field by given value, creates Property if DoesNotExist
+def incGlobalProperty(name="", incrementBy=1):
+    """Increments value Field by given value, creates Property if DoesNotExist
     """
     try:
         try:
-            un = GlobalProperty.objects.get(tag=tag)
+            un = GlobalProperty.objects.get(name=name)
         except GlobalProperty.DoesNotExist:
-            un = GlobalProperty(tag=tag, switch=0)
+            un = GlobalProperty(name=name, value=0)
 
-        un.switch += incrementBy
+        un.value += incrementBy
         un.save()
         return True
     except:
         return False
 
 
-def decGlobalProperty(tag="", decrementBy=1):
-    """Decrements switch Field by given value, creates Property if DoesNotExist
+def decGlobalProperty(name="", decrementBy=1):
+    """Decrements value Field by given value, creates Property if DoesNotExist
     """
     try:
         try:
-            un = GlobalProperty.objects.get(tag=tag)
+            un = GlobalProperty.objects.get(name=name)
         except GlobalProperty.DoesNotExist:
-            un = GlobalProperty(tag=tag, switch=0)
-        if un.switch < 1:
+            un = GlobalProperty(name=name, value=0)
+        if un.value < 1:
             pass
         else:
-            un.switch -= decrementBy
+            un.value -= decrementBy
             un.save()
         return True
     except:

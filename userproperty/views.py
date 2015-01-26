@@ -1,13 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from django.http import HttpResponse
 from compat import JsonResponse
-from django.template import RequestContext
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render_to_response
 
 from userproperty.models import UserProperty, GlobalProperty
 

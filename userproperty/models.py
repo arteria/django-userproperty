@@ -11,7 +11,7 @@ class UserProperty(models.Model):
     '''
     '''
     user = models.ForeignKey(User, related_name='userprop')
-    name = models.SlugField('tag', max_length=64)
+    name = models.SlugField('name', max_length=64)
     value = models.CharField(max_length=256)
 
     class Meta:
@@ -21,7 +21,7 @@ class UserProperty(models.Model):
 
     def __str__(self):
         s = "UserProperty for " + self.user.username
-        s += " with tag '" + self.tag + "' is set to '" + str(self.switch) + "'."
+        s += " with name '" + self.name + "' is set to '" + str(self.value) + "'."
         return s
 
 
@@ -29,7 +29,7 @@ class UserProperty(models.Model):
 class GlobalProperty(models.Model):
     '''
     '''
-    name = models.SlugField('tag', max_length=64, unique=True)
+    name = models.SlugField('name', max_length=64, unique=True)
     value = models.CharField(max_length=256)
 
     class Meta:
@@ -37,4 +37,4 @@ class GlobalProperty(models.Model):
         verbose_name_plural = 'Global Properties'
 
     def __str__(self):
-        return "GlobalProperty with tag '" + self.tag + "' is set to '" + str(self.switch) + "'."
+        return "GlobalProperty with name '" + self.name + "' is set to '" + str(self.value) + "'."

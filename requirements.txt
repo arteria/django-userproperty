@@ -1,0 +1,1 @@
+django-compat==0.0.1

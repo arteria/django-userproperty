@@ -17,7 +17,7 @@ Add the app in you settings.py:
         'userproperty',
     )
 
-Update your root urly.py file:
+Update your root urls.py file:
 
     ...
     url(r'^properties/', include('userproperty.urls')),

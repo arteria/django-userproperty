@@ -17,6 +17,13 @@ Add the app in you settings.py:
         'userproperty',
     )
 
+Update your root urly.py file:
+
+    ...
+    url(r'^properties/', include('userproperty.urls')),
+    ...
+
+
 And finally sync your db
 
     python manage.py syncdb

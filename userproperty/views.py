@@ -63,7 +63,7 @@ def set_user_property(request):
     name = request.GET.get('name')
     value = request.GET.get('value')
 
-    uprop, created = UserProperty.objects.get_or_create(name=name, user=request.user, value=value)
+    uprop, created = UserProperty.objects.get_or_create(name=name, user=request.user)
     uprop.value = value
     uprop.save()
 

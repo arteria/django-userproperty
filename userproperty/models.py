@@ -11,7 +11,7 @@ class UserProperty(models.Model):
     '''
     '''
     user = models.ForeignKey(User, related_name='userprop')
-    name = models.SlugField('name', max_length=250)
+    name = models.SlugField('name', max_length=64)
     value = models.CharField(max_length=256)
 
     class Meta:
@@ -29,7 +29,7 @@ class UserProperty(models.Model):
 class GlobalProperty(models.Model):
     '''
     '''
-    name = models.SlugField('name', max_length=250, unique=True)
+    name = models.SlugField('name', max_length=64, unique=True)
     value = models.CharField(max_length=256)
 
     class Meta:

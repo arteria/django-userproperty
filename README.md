@@ -151,3 +151,10 @@ Other examples: setup tour, saving user specific properties(number of data entri
 The functions are available in pep8 (lowercase with _ as separator between words)
 
 setIntegerProperty() ==> set_integer_property()
+
+## Change Log
+
+### 06/Aug/2015
+
+* Propper anonymous users handling.
+* ``decUserProperty`` and ``incUserProperty`` returns ``False`` instead of ``True`` for anonymous users or in case of errors.

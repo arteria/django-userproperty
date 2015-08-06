@@ -6,13 +6,15 @@ from userproperty.models import UserProperty, GlobalProperty
 
 def setIntegerProperty(request, name="", value=0, anUser=None):
     """
+    The user must not be an anonymous user!   
     """
     try:
         if anUser is None:
             theUser = request.user
         else:
             theUser = anUser
-
+        if theUser.is_anonymous():
+            return False
         try:
             un = UserProperty.objects.get(user=theUser, name=name)
             un.value = value
@@ -27,12 +29,15 @@ def setIntegerProperty(request, name="", value=0, anUser=None):
 
 def getIntegerProperty(request, name="", value=0, anUser=None):
     """
+    The user must not be an anonymous user!   
+    If the user is an anonymous user, the default value (value) will be returned.
     """
     if anUser is None:
         theUser = request.user
     else:
         theUser = anUser
-
+    if theUser.is_anonymous():
+        return value
     try:
         un = UserProperty.objects.get(user=theUser, name=name)
         value = un.value
@@ -43,13 +48,15 @@ def getIntegerProperty(request, name="", value=0, anUser=None):
 
 
 def addProperty(request, name="", anUser=None):
-    """Add a notification for a user.
+    """Add a property for a non anonymous user.
     """
     try:
         if anUser is None:
             theUser = request.user
         else:
             theUser = anUser
+        if theUser.is_anonymous():
+            return False
         try:
             un = UserProperty.objects.get(user=theUser, name=name)
             un.value = 1
@@ -63,12 +70,14 @@ def addProperty(request, name="", anUser=None):
 
 def removeProperty(request, name="", anUser=None):
     """
-    Remove a notification for a user.
+    Remove a poperty for a not anonymous user. 
     """
     if anUser is None:
         theUser = request.user
     else:
         theUser = anUser
+    if theUser.is_anonymous():
+        return False
     try:
         un = UserProperty.objects.get(user=theUser, name=name)
         un.delete()
@@ -78,7 +87,10 @@ def removeProperty(request, name="", anUser=None):
 
 def getAllProperties(request):
     """
+    All properties for non anonymous user.
     """
+    if request.user.is_anonymous():
+        return None
     try:
         un = UserProperty.objects.filter(user=request.user)
         return un
@@ -88,13 +100,17 @@ def getAllProperties(request):
 
 
 def dropAllPropertiesForUser(anUser=None):
-    """Removes all properties for the given user... is used to remove ghosts.
     """
+    Removes all properties for the given non anonymous user.
+    """
+    if anUser.is_anonymous():
+        return None
     UserProperty.objects.filter(user=anUser).delete()
 
 
 def getProperty(request, name="", anUser=None):
-    """Returns True if the user has this property set.
+    """
+    Returns True if the user has this property set.
     """
     try:
         if anUser is None:
@@ -118,12 +134,15 @@ def getUsersWithProperty(name=""):
 
 def incUserProperty(request, name="", anUser=None, incrementBy=1):
     """
+    Works for non anonymous users only.
     """
     try:
         if anUser is None:
             theUser = request.user
         else:
             theUser = anUser
+        if theUser.is_anonymous():
+            return False
         try:
             un = UserProperty.objects.get(user=theUser, name=name)
         except UserProperty.DoesNotExist:
@@ -132,17 +151,20 @@ def incUserProperty(request, name="", anUser=None, incrementBy=1):
         un.save()
         return True
     except:
-        return True
+        return False
 
 
 def decUserProperty(request, name="", anUser=None, decrementBy=1):
     """
+    Works for non anonymous users only.
     """
     try:
         if anUser is None:
             theUser = request.user
         else:
             theUser = anUser
+        if theUser.is_anonymous():
+            return False
         try:
             un = UserProperty.objects.get(user=theUser, name=name)
         except UserProperty.DoesNotExist:
@@ -154,7 +176,7 @@ def decUserProperty(request, name="", anUser=None, decrementBy=1):
             un.save()
         return True
     except:
-        return True
+        return False
 
 
 ### Global Property ###

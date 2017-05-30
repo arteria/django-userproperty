@@ -13,7 +13,9 @@ class ViewsTestCase(TestCase):
         self.client = Client()
         self.client.login(username='foo', password='bar')
 
-        user = User.objects.create_user('foo_staff', 'myemail@test.com', 'bar', is_staff=True)
+        staff_user = User.objects.create_user('foo_staff', 'myemail@test.com', 'bar')
+        staff_user.is_staff = True
+        staff_user.save()
         self.staff_client = Client()
         self.staff_client.login(username='foo_staff', password='bar')
 

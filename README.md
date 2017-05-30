@@ -1,8 +1,6 @@
-# [django-userproperty](https://github.com/arteria/django-userproperty)
+# Django Userproperty
 
-[django-userproperty](https://github.com/arteria/django-userproperty) is a pluggable/reusable Django app that manages per user and global properties. In addition,
-[django-userproperty](https://github.com/arteria/django-userproperty) provides helper functions to set, get, incerement and decrement these properties.
-
+django-userproperty is a reusable Django app that manages per user and global properties. In addition, django-userproperty provides helper functions to set, get, incerement and decrement these properties.
 
 
 ## Installation
@@ -27,6 +25,7 @@ Update your root urls.py file:
 And finally sync your db
 
     python manage.py syncdb
+
 
 ## Usage
 

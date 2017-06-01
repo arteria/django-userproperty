@@ -27,6 +27,7 @@ setup(
     name='django-userproperty',
     version=version,
     packages=['userproperty', ],
+    include_package_data=True,
     license='BSD',
     description='django userproperty',
     long_description=readme,  # + '\n\n' + history,

@@ -1,4 +1,7 @@
 include LICENSE
 include README.md
 include requirements.txt
-recursive-include django_userproperty *py
+recursive-include userproperty *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
+recursive-include userproperty/static *
+recursive-include userproperty/templates *
+global-exclude *.orig *.pyc *.log *.swp

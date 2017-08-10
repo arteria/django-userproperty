@@ -1,5 +1,10 @@
 # Django Userproperty
 
+[![Build Status](https://travis-ci.org/arteria/django-userproperty.svg?branch=master)](https://travis-ci.org/arteria/django-userproperty)
+[![Coverage Status](https://coveralls.io/repos/arteria/django-userproperty/badge.svg?branch=master&service=github)](https://coveralls.io/github/arteria/django-userproperty?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/django-userproperty.svg)](https://pypi.python.org/pypi/django-userproperty)
+
+
 django-userproperty is a reusable Django app that manages per user and global properties. In addition, django-userproperty provides helper functions to set, get, incerement and decrement these properties.
 
 

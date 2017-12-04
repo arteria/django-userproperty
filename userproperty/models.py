@@ -20,9 +20,7 @@ class UserProperty(models.Model):
         unique_together = (("user", "name"),)
 
     def __str__(self):
-        s = "UserProperty for " + self.user.username
-        s += " with name '" + self.name + "' is set to '" + str(self.value) + "'."
-        return s
+        return u"UserProperty for {} with name '{}' is set to '{}'".format(self.user, self.name, self.value)
 
 
 @python_2_unicode_compatible
@@ -37,4 +35,4 @@ class GlobalProperty(models.Model):
         verbose_name_plural = 'Global Properties'
 
     def __str__(self):
-        return "GlobalProperty with name '" + self.name + "' is set to '" + str(self.value) + "'."
+        return "GlobalProperty with name '{}' is set to '{}'".format(self.name, self.value)
